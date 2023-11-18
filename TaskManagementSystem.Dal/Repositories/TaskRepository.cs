@@ -34,9 +34,11 @@ public class TaskRepository : ITaskRepository
         return task;
     }
 
-    public async Task<Task> GetTaskAsync(Guid id)
+    public async Task<Task?> GetTaskAsync(Guid id)
     {
         var task = await _context.Tasks.SingleOrDefaultAsync(x => x.Id == id);
+
+        if(task == null) return null;
 
         return task;
     }
@@ -44,7 +46,7 @@ public class TaskRepository : ITaskRepository
     public async Task<List<Task>> GetTasksAsync()
     {
         var tasks = await _context.Tasks.ToListAsync();
-
+        
         return tasks;
     }
 

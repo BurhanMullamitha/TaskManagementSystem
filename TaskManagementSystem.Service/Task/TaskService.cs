@@ -23,7 +23,7 @@ public class TaskService : ITaskService
         return await _taskRepo.DeleteTaskAsync(id);
     }
 
-    public async Task<Task> GetTaskAsync(Guid id)
+    public async Task<Task?> GetTaskAsync(Guid id)
     {
         return await _taskRepo.GetTaskAsync(id);
     }

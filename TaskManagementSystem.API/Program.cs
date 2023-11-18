@@ -24,6 +24,8 @@ app.UseSerilogRequestLogging();
 
 app.UseHttpsRedirection();
 
+app.UseCors("CorsPolicy");
+
 app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
 app.MapControllers();

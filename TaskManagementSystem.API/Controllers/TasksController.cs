@@ -34,7 +34,7 @@ public class TasksController : Controller
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        Task task = await _taskService.GetTaskAsync(id);
+        Task? task = await _taskService.GetTaskAsync(id);
         
         if(task == null) return ErrorResponse.NotFound(id);
         
@@ -75,7 +75,7 @@ public class TasksController : Controller
 
         if (updatedTask.Priority == EPriority.High)
         {
-            _logger.LogCritical($"A task with high priority was created. Task ID: {updatedTask.Id}");
+            _logger.LogCritical($"A task with high priority was updated. Task ID: {updatedTask.Id}");
         }
 
         return Ok(updatedTask);

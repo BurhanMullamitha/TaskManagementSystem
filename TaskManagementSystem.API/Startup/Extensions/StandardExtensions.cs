@@ -16,6 +16,15 @@ public static class StandardExtensions
         {
             options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
         });
+
+        builder.Services.AddCors(opt => {
+            opt.AddPolicy("CorsPolicy", policy => {
+                policy
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .WithOrigins("http://localhost:3000");
+            });
+        });
     }
 
     public static void AddLogging(this WebApplicationBuilder builder)
